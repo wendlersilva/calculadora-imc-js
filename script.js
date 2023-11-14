@@ -76,3 +76,41 @@ function createTable(data) {
       imcTable.appendChild(div);
     });
   }
+
+  function validDigits(text) {
+    return text.replace(/[^0-9,]/g, "");
+  }
+  
+  function calcImc(height, weight) {
+    const imc = (weight / (height * height)).toFixed(1);
+    return imc;
+  }
+  
+  function cleanInputs() {
+    heightInput.value = "";
+    weightInput.value = "";
+    imcNumber.className = "";
+    imcInfo.className = "";
+  }
+  
+  function showOrHideResults() {
+    calcContainer.classList.toggle("hide");
+    resultContainer.classList.toggle("hide");
+  }
+
+// Init
+createTable(data);
+
+// Eventos
+[heightInput, weightInput].forEach((el) => {
+  el.addEventListener("input", (e) => {
+    const updatedValue = validDigits(e.target.value);
+
+    e.target.value = updatedValue;
+  });
+});
+
+calcBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+});
